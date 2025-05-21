@@ -10,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         list = new ArrayList<>();
+        List<String> forRemoved = new ArrayList<>();
 
         menu = new ArrayList<>();
         menu.add("Выход из программы");
@@ -57,16 +58,20 @@ public class Main {
                 case 5:
                     System.out.print("Введите ключевое слово для удаления: ");
                     String word = sc.nextLine();
-                    List<String> forRemoved = new ArrayList<>();
+                    int count = 0;
                     for (int i = 0; i < list.size(); i++) {
                         if (list.get(i).toLowerCase().contains(word.toLowerCase())) {
                              forRemoved.add(list.get(i));
+                             count++;
                         }
                     }
-                    for (int i = 0; i < forRemoved.size(); i++) {
-                        list.remove(forRemoved.get(i));
-                    }
-                    System.out.println("Удалено!");
+                    if (count != 0){
+                        for (int i = 0; i < forRemoved.size(); i++) {
+                            list.remove(forRemoved.get(i));
+                        }
+                        forRemoved.clear();
+                        System.out.println("Удалено!");
+                    } else System.out.println("Совпадений не найдено!");
                     printList();
                     break;
             }
