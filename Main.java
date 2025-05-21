@@ -41,7 +41,7 @@ public class Main {
                 case 3:
                     System.out.print("Введите номер для удаления: ");
                     int point = Integer.parseInt(sc.nextLine());
-                    boolean isRemove = list.remove(list.get(point));
+                    boolean isRemove = list.remove(list.get(point-1));
                     if (isRemove) {
                         System.out.println("Удалено!");
                         printList();
