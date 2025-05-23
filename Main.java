@@ -41,10 +41,12 @@ public class Main {
                 case 3:
                     System.out.print("Введите номер для удаления: ");
                     int point = Integer.parseInt(sc.nextLine());
-                    boolean isRemove = list.remove(list.get(point-1));
-                    if (isRemove) {
-                        System.out.println("Удалено!");
-                        printList();
+                    if ((point-1) >= 0 && (point - 1) <= list.size()) {
+                        boolean isRemove = list.remove(list.get(point-1));
+                        if (isRemove) {
+                            System.out.println("Удалено!");
+                            printList();
+                        } else System.out.println("Не удалось удалить!");
                     } else System.out.println("Дела с таким номером нет!");
                     break;
                 case 4:
