@@ -39,42 +39,51 @@ public class Main {
                     printList();
                     break;
                 case 3:
-                    System.out.print("Введите номер для удаления: ");
-                    int point = Integer.parseInt(sc.nextLine());
-                    if ((point-1) >= 0 && (point - 1) <= list.size()) {
-                        boolean isRemove = list.remove(list.get(point-1));
-                        if (isRemove) {
-                            System.out.println("Удалено!");
-                            printList();
-                        } else System.out.println("Не удалось удалить!");
-                    } else System.out.println("Дела с таким номером нет!");
+                    boolean isEmpty = list.isEmpty();
+                    if (!isEmpty) {
+                        System.out.print("Введите номер для удаления: ");
+                        int point = Integer.parseInt(sc.nextLine());
+                        if (point > 0 && point <= list.size()) {
+                            boolean isRemove = list.remove(list.get(point-1));
+                            if (isRemove) {
+                                System.out.println("Удалено!");
+                                printList();
+                            } else System.out.println("Не удалось удалить!");
+                        } else System.out.println("Дела с таким номером нет!");
+                    } else System.out.println("Список дел пуст!");
                     break;
                 case 4:
-                    System.out.print("Введите задачу для удаления: ");
-                    boolean isRemove1 = list.remove(sc.nextLine());
-                    if (isRemove1) {
-                        System.out.println("Удалено!");
-                        printList();
-                    } else System.out.println("Дела с таким текстом нет!");
+                    isEmpty = list.isEmpty();
+                    if (!isEmpty) {
+                        System.out.print("Введите задачу для удаления: ");
+                        boolean isRemove1 = list.remove(sc.nextLine());
+                        if (isRemove1) {
+                            System.out.println("Удалено!");
+                            printList();
+                        } else System.out.println("Дела с таким текстом нет!");
+                    } else System.out.println("Список дел пуст!");
                     break;
                 case 5:
-                    System.out.print("Введите ключевое слово для удаления: ");
-                    String word = sc.nextLine();
-                    int count = 0;
-                    for (int i = 0; i < list.size(); i++) {
-                        if (list.get(i).toLowerCase().contains(word.toLowerCase())) {
-                             forRemoved.add(list.get(i));
-                             count++;
+                    isEmpty = list.isEmpty();
+                    if (!isEmpty) {
+                        System.out.print("Введите ключевое слово для удаления: ");
+                        String word = sc.nextLine();
+                        int count = 0;
+                        for (int i = 0; i < list.size(); i++) {
+                            if (list.get(i).toLowerCase().contains(word.toLowerCase())) {
+                                forRemoved.add(list.get(i));
+                                count++;
+                            }
                         }
-                    }
-                    if (count != 0){
-                        for (int i = 0; i < forRemoved.size(); i++) {
-                            list.remove(forRemoved.get(i));
-                        }
-                        forRemoved.clear();
-                        System.out.println("Удалено!");
-                    } else System.out.println("Совпадений не найдено!");
-                    printList();
+                        if (count != 0){
+                            for (int i = 0; i < forRemoved.size(); i++) {
+                                list.remove(forRemoved.get(i));
+                            }
+                            forRemoved.clear();
+                            System.out.println("Удалено!");
+                        } else System.out.println("Совпадений не найдено!");
+                        printList();
+                    } else System.out.println("Список дел пуст!");
                     break;
             }
 
